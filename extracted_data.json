@@ -1,0 +1,27 @@
+{
+    "data": [
+        {
+            "Parcelní číslo:": "1/1",
+            "Obec:": "Ostrava [554821]",
+            "Katastrální území:": "Slezská Ostrava [714828]",
+            "Číslo LV:": "3425",
+            "Výměra [m2]:": "1255",
+            "Typ parcely:": "Parcela katastru nemovitostí",
+            "Mapový list:": "DKM",
+            "Určení výměry:": "Graficky nebo v digitalizované mapě",
+            "Druh pozemku:": "zastavěná plocha a nádvoří"
+        },
+        {
+            "Parcelní číslo:": "1/2",
+            "Obec:": "Ostrava [554821]",
+            "Katastrální území:": "Slezská Ostrava [714828]",
+            "Číslo LV:": "3425",
+            "Výměra [m2]:": "33",
+            "Typ parcely:": "Parcela katastru nemovitostí",
+            "Mapový list:": "DKM",
+            "Určení výměry:": "Ze souřadnic v S-JTSK",
+            "Druh pozemku:": "zastavěná plocha a nádvoří",
+            "Stavba na pozemku:": "bez čp / č. ev., garáž"
+        }
+    ]
+}
