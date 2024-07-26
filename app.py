@@ -31,7 +31,7 @@ df_filtered = df_filtered[(df_filtered["Výměra [m2]:"] >= selected_vymera[0]) 
 
 # Sort by "Výměra [m2]:"
 sort_order = st.sidebar.radio("Sort by Výměra [m2]:", ("Ascending", "Descending"))
-df_filtered = df_filtered.sort_values(by="Výměra [m2]:", ascending=(sort_order == "Ascending"))
+df_filtered = df_filtered.sort_values(by="Výměra [m2]:", ascending=(sort_order == "Descending"))
 
 # Main area
 st.title("Parcel Data Viewer")

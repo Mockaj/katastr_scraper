@@ -37,7 +37,7 @@ def extract_data(driver):
         driver.get(url)
 
         # Wait for the page to load completely
-        time.sleep(1)  # Adjust this based on your internet speed
+        time.sleep(0.5)  # Adjust this based on your internet speed
 
         # Find the table containing the rows
         table_element = driver.find_element(By.XPATH, "//*[@id='content']/table[3]/tbody")
@@ -69,7 +69,7 @@ def extract_link_data(driver, link):
         driver.get(link)
 
         # Wait for the page to load completely
-        time.sleep(2)  # Adjust this based on your internet speed
+        time.sleep(0.1)  # Adjust this based on your internet speed
 
         # Find the table containing the rows
         table_element = driver.find_element(By.CSS_SELECTOR, "#content > div.vysledek--mapa > table > tbody")
@@ -84,21 +84,33 @@ def extract_link_data(driver, link):
 # Extract data from the main page
 hrefs = extract_data(driver)
 
-# Initialize a list to store the link data
-link_data_list = []
+# Allow the user to select a range of links to scrape
+print(f"Total links found: {len(hrefs)}")
+start_index = int(input(f"Enter the start index (0 to {len(hrefs)-1}): "))
+end_index = int(input(f"Enter the end index ({start_index} to {len(hrefs)-1}): "))
+hrefs_to_scrape = hrefs[start_index:end_index+1]
 
-# Iterate through each link and extract data
-for i, href in enumerate(hrefs):
+# Load existing data from the JSON file
+with open("extracted_data.json", "r", encoding="utf-8") as json_file:
+    existing_data = json.load(json_file)
+
+# Initialize a list to store the new link data
+new_link_data_list = []
+
+# Iterate through the selected links and extract data
+for href in hrefs_to_scrape:
     link_data = extract_link_data(driver, href)
-    link_data_list.append(link_data)
+    new_link_data_list.append(link_data)
 
-# Save the extracted data to a JSON file
+# Append the new data to the existing data
+existing_data["data"].extend(new_link_data_list)
+
+# Save the updated data back to the JSON file
 with open("extracted_data.json", "w", encoding="utf-8") as json_file:
-    data = {"data": link_data_list}
-    json.dump(data, json_file, ensure_ascii=False, indent=4)
+    json.dump(existing_data, json_file, ensure_ascii=False, indent=4)
 
 # Print a success message
-print("Data extraction completed and saved to 'extracted_data.json'.")
+print("Data extraction completed and appended to 'extracted_data.json'.")
 
 # Close the WebDriver
 driver.quit()
